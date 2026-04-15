@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda da Comandante-Geral em Brasília | CBMRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Josefin Sans', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #3e3e3e;
+            background-color: #f2f2f7;
+        }
+
+        /* ── TOPO INSTITUCIONAL ── */
+        .site-topbar {
+            background-color: #E4001A;
+            padding: 10px 0;
+        }
+        .site-topbar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .site-topbar img.logo {
+            height: 64px;
+            width: auto;
+        }
+        .site-topbar-text {
+            color: #fff;
+        }
+        .site-topbar-text .title-main {
+            font-size: 1.35em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .site-topbar-text .title-sub {
+            font-size: 0.85em;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.92;
+        }
+
+        /* ── BARRA DE NAVEGAÇÃO ── */
+        .site-nav {
+            background-color: #fff;
+            border-bottom: 3px solid #E4001A;
+        }
+        .site-nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        .site-nav a {
+            display: inline-block;
+            padding: 12px 16px;
+            color: #3e3e3e;
+            text-decoration: none;
+            font-size: 0.82em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .site-nav a:hover,
+        .site-nav a.active {
+            color: #E4001A;
+            border-bottom-color: #E4001A;
+        }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb {
+            background-color: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 8px 0;
+        }
+        .breadcrumb-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 0.82em;
+            color: #888;
+        }
+        .breadcrumb-inner a {
+            color: #E4001A;
+            text-decoration: none;
+        }
+        .breadcrumb-inner a:hover { text-decoration: underline; }
+        .breadcrumb-inner span { margin: 0 6px; }
+
+        /* ── CONTAINER PRINCIPAL ── */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        /* ── ARTIGO PRINCIPAL ── */
+        .article-main {
+            background-color: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+        }
+
+        .article-header {
+            background-color: #E4001A;
+            padding: 28px 32px 22px;
+        }
+        .article-header .category-tag {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 2px;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            color: #fff;
+            font-size: 1.75em;
+            font-weight: 700;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .article-meta {
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #eee;
+            padding: 10px 32px;
+            display: flex;
+            gap: 24px;
+            font-size: 0.82em;
+            color: #888;
+        }
+        .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+        .article-body {
+            padding: 28px 32px 36px;
+        }
+        .article-body p {
+            margin-bottom: 16px;
+            text-align: justify;
+            font-size: 1em;
+            color: #3e3e3e;
+        }
+
+        /* ── SEÇÕES ── */
+        .section-title {
+            color: #E4001A;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 32px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #E4001A;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 22px;
+            background-color: #E4001A;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ── DESTAQUE / CITAÇÃO ── */
+        .highlight-box {
+            background-color: #fff8f8;
+            border-left: 5px solid #E4001A;
+            padding: 18px 22px;
+            margin: 24px 0;
+            font-style: italic;
+            color: #444;
+            font-size: 0.97em;
+            border-radius: 0 4px 4px 0;
+        }
+        .highlight-box strong {
+            display: block;
+            margin-bottom: 8px;
+            font-style: normal;
+            color: #E4001A;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── LISTA DE ÓRGÃOS ── */
+        .organs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .organ-card {
+            background-color: #fafafa;
+            border: 1px solid #eee;
+            border-left: 4px solid #E4001A;
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.88em;
+            color: #555;
+        }
+        .organ-card strong {
+            display: block;
+            color: #E4001A;
+            font-size: 1em;
+            margin-bottom: 2px;
+        }
+
+        /* ── GALERIA ── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .gallery-card {
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-card .caption {
+            padding: 8px 12px;
+            font-size: 0.8em;
+            color: #777;
+            background-color: #f9f9f9;
+            border-top: 2px solid #E4001A;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {}
+        .sidebar-widget {
+            background-color: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+        .sidebar-widget-title {
+            background-color: #E4001A;
+            color: #fff;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 10px 16px;
+        }
+        .sidebar-widget-body {
+            padding: 16px;
+        }
+        .sidebar-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.85em;
+            color: #555;
+        }
+        .sidebar-info-item:last-child { border-bottom: none; }
+        .sidebar-info-item .icon {
+            color: #E4001A;
+            font-size: 1.1em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .sidebar-info-item .label {
+            font-weight: 700;
+            color: #333;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.84em;
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-date {
+            display: inline-block;
+            background-color: #E4001A;
+            color: #fff;
+            font-size: 0.78em;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-bottom: 4px;
+        }
+        .timeline-text { color: #555; }
+
+        /* ── RODAPÉ ── */
+        .site-footer {
+            background-color: #E4001A;
+            color: #fff;
+            margin-top: 40px;
+            padding: 24px 0 16px;
+        }
+        .site-footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .site-footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .site-footer-logo img {
+            height: 52px;
+        }
+        .site-footer-logo-text {
+            font-size: 0.82em;
+            line-height: 1.5;
+        }
+        .site-footer-logo-text strong {
+            display: block;
+            font-size: 1.05em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .site-footer-info {
+            font-size: 0.8em;
+            text-align: right;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        .site-footer-bottom {
+            max-width: 1100px;
+            margin: 14px auto 0;
+            padding: 10px 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+        }
+
+        /* ── RESPONSIVO ── */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .sidebar { order: -1; }
+            .site-topbar-text .title-main { font-size: 1em; }
+            .article-header h1 { font-size: 1.3em; }
+            .article-body, .article-header { padding: 20px; }
+            .article-meta { padding: 10px 20px; flex-wrap: wrap; gap: 10px; }
+            .site-footer-inner { flex-direction: column; text-align: center; }
+            .site-footer-info { text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .site-nav-inner { overflow-x: auto; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .organs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOPO INSTITUCIONAL -->
+    <div class="site-topbar">
+        <div class="site-topbar-inner">
+            <div class="site-topbar-text">
+                <div class="title-main">Corpo de Bombeiros Militar de Rondônia</div>
+                <div class="title-sub">Coordenadoria Estadual de Proteção e Defesa Civil</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVEGAÇÃO -->
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="https://www.cbm.ro.gov.br/">Início</a>
+            <a href="https://www.cbm.ro.gov.br/corporacao/">Corporação</a>
+            <a href="https://www.cbm.ro.gov.br/noticias/" class="active">Notícias</a>
+            <a href="https://www.cbm.ro.gov.br/eventos/">Eventos</a>
+            <a href="https://www.cbm.ro.gov.br/contatos/">Contatos</a>
+            <a href="https://www.cbm.ro.gov.br/para-o-cidadao/">Para o Cidadão</a>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-inner">
+            <a href="https://www.cbm.ro.gov.br/">Início</a>
+            <span>›</span>
+            <a href="https://www.cbm.ro.gov.br/noticias/">Notícias</a>
+            <span>›</span>
+            Agenda da Comandante-Geral em Brasília
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="page-wrapper">
+
+        <!-- ARTIGO -->
+        <main class="article-main">
+            <div class="article-header">
+                <div class="category-tag">&#128240; Notícias Institucionais</div>
+                <h1>Comandante-Geral do CBMRO Realiza Agenda Estratégica em Brasília</h1>
+            </div>
+            <div class="article-meta">
+                <span><span class="icon">📅</span> 15 de abril de 2026</span>
+                <span><span class="icon">📍</span> Brasília, DF</span>
+                <span><span class="icon">✍️</span> Assessoria Institucional do CBMRO</span>
+            </div>
+
+            <div class="article-body">
+
+                <p>A Comandante-Geral do Corpo de Bombeiros Militar de Rondônia (CBMRO), Cel BM Daniele <strong>Cristina</strong> Lima Ferreira, concluiu com sucesso uma agenda institucional de cinco dias em Brasília, participando de <strong>13 reuniões com órgãos federais estratégicos</strong>. A missão, realizada entre os dias 06 e 10 de abril, contou com a participação do Chefe da Assessoria Institucional (Cel BM <strong>Wândrio</strong> Bandeira dos Anjos), da Ajudante de Ordens (Cap BM <strong>Ana Paula</strong>) e do Assessor Institucional (Ten BM <strong>Tiago</strong>).</p>
+
+                <h2 class="section-title">Objetivos Alcançados</h2>
+
+                <p>A agenda focou em três pilares fundamentais para o fortalecimento do CBMRO: <strong>captação de recursos federais, operações integradas e defesa civil, e fortalecimento institucional</strong>. Os resultados consolidados demonstram avanços significativos em cada uma dessas frentes.</p>
+
+                <h2 class="section-title">Captação de Recursos: Crescimento Expressivo</h2>
+
+                <p>A adoção da Modalidade 90 (execução direta), através do Ministério da Justiça e Segurança Pública, e a utilização de atas centralizadas pela Secretaria Nacional de Segurança Pública (SENASP) viabilizou economias de até 40% em itens como caminhonetes, demonstrando a eficiência do modelo de licitações centralizadas, além de reduzir drasticamente o tempo de entrega de bens, passando de processos que levavam anos para entregas em menos de um ano.</p>
+
+                <p>No âmbito do Programa Amazônia Mais Segura (AMAS), o CBMRO busca garantir sua participação no eixo de equipamentos, com foco em aquisições de viaturas e equipamentos específicos para operações na região amazônica.</p>
+
+                <h2 class="section-title">Operações Integradas: SENASP</h2>
+
+                <p>As reuniões com órgãos federais estratégicos consolidaram avanços relevantes para a atuação integrada do CBMRO no cenário nacional. Na frente orçamentária, a Secretaria Nacional de Segurança Pública (SENASP) garantiu a recomposição dos recursos para operações como a <strong>Operação Verde Rondônia</strong>, que haviam sofrido cortes no início do ano. Mais do que a simples recomposição, os recursos poderão ser potencializados, ampliando a capacidade operacional das corporações estaduais.</p>
+
+                <p>No âmbito do Programa Amazônia Mais Segura (AMAS), foi esclarecida a estrutura de governança: cada estado conta com um <strong>Comitê Executivo Estadual</strong> — integrado por Bombeiros, PM, Polícia Civil, PF e PRF — responsável pelo encaminhamento dos planos estaduais a Brasília. O cumprimento desse fluxo é essencial para garantir celeridade na execução de recursos e no pagamento de diárias. Embora o CBMRO já receba apoio para custeio de operações, a participação dos bombeiros no eixo de aquisição de equipamentos do programa permanece limitada, com previsão de recebimento majoritariamente de caminhonetes.</p>
+
+                <p>Por fim, foi apresentado o <strong>Projeto RESPAD (Resposta em Ações Integradas para Atuação em Situações de Desastres)</strong>, desenvolvido pela CGOI em parceria com a LIGABOM, com o objetivo de padronizar os protocolos nacionais de atuação em desastres, com base nas lições aprendidas nas inundações do Rio Grande do Sul.</p>
+
+                <h2 class="section-title">Defesa Civil: Articulação e Recursos</h2>
+
+                <p>A reunião com o Departamento de Preparação e Socorro (DPS) tratou da <strong>dupla atuação do CBMRO em Rondônia</strong>, que opera simultaneamente como órgão de Segurança Pública e de Defesa Civil, exigindo articulação constante com diferentes ministérios. As demandas de Defesa Civil são tratadas com o Ministério da Integração e Desenvolvimento Regional, enquanto as de Segurança Pública são encaminhadas ao Ministério da Justiça e Segurança Pública (MJSP).</p>
+
+                <p>Um dos principais desafios debatidos foi a <strong>limitação do Fundo Nacional de Defesa Civil</strong>, cujos recursos são destinados quase exclusivamente à resposta a desastres, sem regulamentação para ações preventivas. Para contornar essa restrição, o DPS tem articulado junto à Casa Civil a liberação de recursos e linhas de crédito — incluindo o BNDES — do MJSP para os Corpos de Bombeiros estaduais, com resultados positivos. O Coronel Armin Augusto Braun destacou que o modelo ideal para a Defesa Civil Nacional seria um órgão com vínculo direto à Presidência da República, conferindo mais agilidade e foco exclusivo às ações de prevenção e resposta.</p>
+
+                <p>Na sequência, a reunião com a Secretaria Nacional de Proteção e Defesa Civil (SEDEC) abordou a <strong>reestruturação interna do órgão</strong>. O Secretário Wolnei Wolff Barreiros apresentou as principais mudanças: criação de departamento exclusivo para Ajuda Humanitária, fortalecimento do DPS, ampliação das coordenações gerais de três para sete e autorização presidencial para criação de três novos departamentos. O Secretário elogiou a gestão do CBMRO e reafirmou a importância da assessoria institucional em Brasília. Foi destacada ainda a realização do <strong>CONGEPDEC</strong> nos dias 28 e 29 de abril, reforçando a participação de Rondônia.</p>
+
+                <h2 class="section-title">Fortalecimento Institucional: Resoluções Estratégicas</h2>
+
+                <p>Na frente de fortalecimento institucional, foram discutidas e definidas estratégias para resolver demandas críticas da corporação. Um dos temas mais sensíveis foi o <strong>litígio fundiário</strong> envolvendo a área ocupada pelo CBMRO e a Base Aérea, que possui sobreposição de matrículas entre o Estado e a União.</p>
+
+                <p>A agenda também contemplou reunião com a Secretaria Especial de Integração do Estado de Rondônia em Brasília (SIBRA), onde foram alinhadas estratégias de captação de recursos e reafirmada a importância da representação física e ativa do CBMRO na capital federal. O CBMRO planeja retomar uma agenda de visitas diretas às embaixadas de países financiadores do Fundo Amazônia — como Noruega, Suíça e Alemanha — para apresentar a Operação Verde Rondônia e seus resultados expressivos, buscando alternativas de financiamento direto que não dependam exclusivamente do BNDES.</p>
+
+                <p>Na frente de proteção ambiental e social, foi apresentado ao Ministério dos Povos Indígenas (MPI) o plano de capacitação de brigadistas indígenas. Para viabilizar a estruturação dessas brigadas com Equipamentos de Proteção Individual (EPIs), sopradores e caminhonetes adaptadas, propôs-se um modelo ágil de financiamento que utiliza atas de registro de preços já vigentes e programas como o Pegasus para o custeio de horas de voo.</p>
+
+                <p>No campo da integridade e transparência, a reunião com o <strong>IntegriJUSP</strong> — Programa de Integridade do Ministério da Justiça e Segurança Pública — apresentou ao CBMRO um modelo estruturado de monitoramento contínuo, com registro das ações no sistema da CGU, permitindo identificar fragilidades e corrigir rotas antes do encerramento dos prazos. Destaque também para o projeto piloto de enfrentamento ao assédio e à discriminação, desenvolvido com mentoria do Ministério da Gestão e Inovação em Serviços Públicos (MGI), que prevê pesquisa interna e ações estruturadas de proteção aos servidores.</p>
+
+                <h2 class="section-title">Órgãos Federais Envolvidos</h2>
+
+                <div class="organs-grid">
+                    <div class="organ-card"><strong>CGFRON</strong>Operações Integradas</div>
+                    <div class="organ-card"><strong>CGLIC</strong>Aquisição de Equipamentos</div>
+                    <div class="organ-card"><strong>FUNESP</strong>Fortalecimento Institucional</div>
+                    <div class="organ-card"><strong>CGADI/DIOPI</strong>Governança do Programa AMAS</div>
+                    <div class="organ-card"><strong>IntegriJUSP</strong>Integridade e Transparência</div>
+                    <div class="organ-card"><strong>DIOPI</strong>Infraestrutura e Investimentos</div>
+                    <div class="organ-card"><strong>DPS</strong>Defesa Civil e Articulação Institucional</div>
+                    <div class="organ-card"><strong>SIBRA</strong>Representação Institucional</div>
+                    <div class="organ-card"><strong>SEDEC</strong>Reestruturação e Operações</div>
+                    <div class="organ-card"><strong>MPI</strong>Brigadistas Indígenas</div>
+                    <div class="organ-card"><strong>DFNSP</strong>Alinhamento Estratégico</div>
+                    <div class="organ-card"><strong>FAB</strong>Resolução de Litígio Fundiário</div>
+                    <div class="organ-card"><strong>CGOI</strong>Projeto RESPAD</div>
+                </div>
+
+                <h2 class="section-title">Galeria de Fotos</h2>
+                <p>Confira os momentos das reuniões realizadas:</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <img src="release_fotos/01-Reunião06-04-CGFRON-CelGalvão-001.png" alt="Reunião CGFRON">
+                        <div class="caption">Reunião com CGFRON – 06/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/02-Reunião06-04-CGLIC-CelMárcio-000.png" alt="Reunião CGLIC">
+                        <div class="caption">Reunião com CGLIC – 06/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/03-Reunião07-04-FUNESP-Dra.CamilaPintarelli-001.png" alt="Reunião FUNESP">
+                        <div class="caption">Reunião com FUNESP – 07/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/04-Reunião07-04-CGADI-Sr.PauloHenrique-001.png" alt="Reunião CGADI/DIOPI">
+                        <div class="caption">Reunião com CGADI/DIOPI – 07/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/05-Reunião07-04-IntegriJUSP-Sr.Cristina-landscape.jpg" alt="Reunião IntegriJUSP">
+                        <div class="caption">Reunião com IntegriJUSP – 07/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/06-Reunião07-04-DIOPI-Dr.JoséAnchiêta-000.png" alt="Reunião DIOPI">
+                        <div class="caption">Reunião com DIOPI – 07/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/07-Reunião08-04-DPS-CelBraun-001.png" alt="Reunião DPS">
+                        <div class="caption">Reunião com DPS – 08/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/08-Reunião08-04-SIBRA-Sra.Scheila-001.png" alt="Reunião SIBRA">
+                        <div class="caption">Reunião com SIBRA – 08/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/09-Reunião08-04-CEDEC-Sr.WolneiWolff-landscape.jpg" alt="Reunião CEDEC">
+                        <div class="caption">Reunião com CEDEC – 08/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/10-Reunião09-04-MPI-Sr.JoãoLucas-001.png" alt="Reunião MPI">
+                        <div class="caption">Reunião com MPI – 09/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/11-Reunião09-04-DFNSP-CelAlencar-landscape.jpg" alt="Reunião DFNSP">
+                        <div class="caption">Reunião com DFNSP – 09/04</div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="release_fotos/13-Reunião10-04-CGOI-CelJobim-landscape.jpg" alt="Reunião CGOI">
+                        <div class="caption">Reunião com CGOI – 10/04</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Declaração da Comandante-Geral</strong>
+                    "Esta agenda em Brasília representa o compromisso da nova gestão com o fortalecimento institucional do CBMRO. Demonstramos que, com articulação política eficiente e foco em resultados, conseguimos avançar significativamente em captação de recursos, operações integradas e resolução de demandas críticas. O trabalho de nossa equipe de Assessoria Institucional em Brasília foi fundamental para esses avanços, e continuaremos investindo nessa articulação para garantir que o Corpo de Bombeiros de Rondônia seja reconhecido como uma instituição de excelência no cenário nacional."
+                </div>
+
+                <h2 class="section-title">Sobre o CBMRO</h2>
+
+                <p>O Corpo de Bombeiros Militar de Rondônia (CBMRO) é uma instituição de Segurança Pública e Defesa Civil responsável pela prevenção e combate a incêndios, resgate de pessoas, proteção ambiental e resposta a desastres no estado de Rondônia. Com uma história de dedicação e profissionalismo, o CBMRO segue comprometido com a salvação de vidas e a proteção da população.</p>
+
+            </div>
+        </main>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-widget">
+                <div class="sidebar-widget-title">📋 Informações da Agenda</div>
+                <div class="sidebar-widget-body">
+                    <div class="sidebar-info-item">
+                        <span class="icon">📅</span>
+                        <div><span class="label">Período</span>06 a 10 de abril de 2026</div>
+                    </div>
+                    <div class="sidebar-info-item">
+                        <span class="icon">📍</span>
+                        <div><span class="label">Local</span>Brasília, Distrito Federal</div>
+                    </div>
+                    <div class="sidebar-info-item">
+                        <span class="icon">🤝</span>
+                        <div><span class="label">Reuniões Realizadas</span>13 órgãos federais</div>
+                    </div>
+                    <div class="sidebar-info-item">
+                        <span class="icon">👤</span>
+                        <div><span class="label">Comandante-Geral</span>Cel BM Daniele Cristina Lima Ferreira</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <div class="sidebar-widget-title">🗓️ Cronograma</div>
+                <div class="sidebar-widget-body">
+                    <div class="timeline-item">
+                        <span class="timeline-date">06/04</span>
+                        <div class="timeline-text">CGFRON · CGLIC</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">07/04</span>
+                        <div class="timeline-text">FUNESP · CGADI · IntegriJUSP · DIOPI</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">08/04</span>
+                        <div class="timeline-text">DPS · SIBRA · CEDEC</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">09/04</span>
+                        <div class="timeline-text">MPI · DFNSP · FAB</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">10/04</span>
+                        <div class="timeline-text">CGOI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <div class="sidebar-widget-title">🔗 Links Úteis</div>
+                <div class="sidebar-widget-body">
+                    <div class="sidebar-info-item">
+                        <span class="icon">🌐</span>
+                        <div><a href="https://www.cbm.ro.gov.br" style="color:#E4001A;text-decoration:none;">Site Oficial CBMRO</a></div>
+                    </div>
+                    <div class="sidebar-info-item">
+                        <span class="icon">📞</span>
+                        <div><span class="label">Emergências</span>193</div>
+                    </div>
+                    <div class="sidebar-info-item">
+                        <span class="icon">📧</span>
+                        <div>gabcmd@cbm.ro.gov.br</div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+    </div><!-- /page-wrapper -->
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-logo">
+                <div class="site-footer-logo-text">
+                    <strong>Corpo de Bombeiros Militar de Rondônia</strong>
+                    Diretoria de Comunicação Social (DCS)<br>
+                    Todos os direitos reservados – 2026
+                </div>
+            </div>
+            <div class="site-footer-info">
+                <div>Data de Publicação: 15 de abril de 2026</div>
+                <div>Fonte: Assessoria Institucional do CBMRO em Brasília/DF</div>
+                <div>Quartel Dom Pedro II – Porto Velho/RO</div>
+            </div>
+        </div>
+        <div class="site-footer-bottom">
+            Av. Santos Dumont – Bairro Nova Esperança, Porto Velho – RO &nbsp;|&nbsp; gabcmd@cbm.ro.gov.br &nbsp;|&nbsp; WhatsApp: (69) 99213-1391
+        </div>
+    </footer>
+
+</body>
+</html>
